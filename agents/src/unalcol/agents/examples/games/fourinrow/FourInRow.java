@@ -49,8 +49,7 @@ public class FourInRow extends Environment{
         return new FourInRowPercept(board, clock);
     }
 
-    @Override
-    public boolean act(Agent agent, Action action){
+    private void checkEndGame() {
         int w = board.check();
         if(board.full() ||  w != 0 ){
             agents.get(0).die();
@@ -64,7 +63,12 @@ public class FourInRow extends Environment{
                   updateViews(EnvironmentView.DONE + ": Draw");
                }
             }
-        }        
+        } 
+    }
+    
+    @Override
+    public boolean act(Agent agent, Action action){
+     
         
         if(clock.white_turn()){
             if( agent != agents.get(0)){
@@ -92,6 +96,7 @@ public class FourInRow extends Environment{
         int j = Integer.parseInt(code[1]);
         if( code[2].equals(WHITE) ){
             if( clock.white_turn()  && board.play(i, j, 1)){
+            	checkEndGame();
                 clock.swap();
                 updateViews("Working");
                 return true;
@@ -101,6 +106,7 @@ public class FourInRow extends Environment{
             return false;
         }else{
             if( !clock.white_turn()  && board.play(i, j, -1)){
+            	checkEndGame();
                 clock.swap();
                 updateViews("Working");
                 return true;

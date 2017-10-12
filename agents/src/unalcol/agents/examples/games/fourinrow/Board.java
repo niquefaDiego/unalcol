@@ -33,11 +33,11 @@ public class Board {
      }
     
     public boolean play( int i, int j, int val ){
-	int n = values.length;
-	if( 0<=i && i<n && 0<=j && j<n && values[i][j]==0 && (i==n-1 || values[i+1][j]!=0)){
-	    values[i][j] = val;
-	    return true;
-	}
+		int n = values.length;
+		if( 0<=i && i<n && 0<=j && j<n && values[i][j]==0 && (i==n-1 || values[i+1][j]!=0)){
+		    values[i][j] = val;
+		    return true;
+		}
         return false;        
     }
 
@@ -106,18 +106,18 @@ public class Board {
     }
     
     public int check_ld( int i, int j ){
-	int n = values.length;
-	if( i<=n-LINE && j>=LINE-1 && values[i][j]!=0){
-	    int c = values[i][j];
-	    int k = 0;
-	    while( k<LINE && c==values[i][j] ){
-		i++;
-		j--;
-		k++;
-	    }
-	    if( k==LINE ) return c;
-	}
-	return 0;
+		int n = values.length;
+		if( i<=n-LINE && j>=LINE-1 && values[i][j]!=0){
+		    int c = values[i][j];
+		    int k = 0;
+		    while( k<LINE && c==values[i][j] ){
+				i++;
+				j--;
+				k++;
+		    }
+		    if( k==LINE ) return c;
+		}
+		return 0;
     }
     
     public int check_rd( int i, int j ){
